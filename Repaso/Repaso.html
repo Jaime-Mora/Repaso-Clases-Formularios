@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso clases y formularios</title>
+</head>
+<body>
+
+    <div>
+        <h1>Repaso clases y formularios</h1>
+        <br>
+
+        X1: <br> <input type="number" id="x1" class="Boton"> 
+        <br>
+        <br>
+
+        X2: <br> <input type="number" id="x2" class="Boton"> 
+        <br>
+        <br>
+
+        <button onclick="Agregar()"id="Agregar">Agregar</button>
+        <p id="recorrido"></p>
+    </div>
+
+    <div>
+        <br>
+       <button onclick="Distancia()">Mostrar distancia</button>
+       <br>
+       <p id="distancia">Distancia total</p>
+    </div>
+
+
+
+    <script>
+
+    class Inventario{
+    constructor(){ 
+        this.inicio=null
+    }
+    Agregar(nuevo){
+    
+        if (this.inicio===null){
+            this.inicio=nuevo}
+            else{
+                let a=this.inicio
+                 while(a.sig!=null){
+                 a=a.sig}
+                 a.sig=nuevo}
+    }
+    }
+    
+    class puntos{
+        constructor(x,y){
+            this.x=x;
+            this.y=y;
+            this.cor="("+this.x+","+this.y+")";
+            this.sig=null;
+        }
+        dis(){
+            let punto1=Math.pow(this.sig.x-this.x,2);
+            let punto2=Math.pow(this.sig.y-this.y,2);
+           
+            return(Math.sqrt(punto1+punto2));
+        }
+        }
+
+        Todos=new Inventario();
+
+
+        function Agregar(){
+            x=document.getElementById("x1").value
+            y=document.getElementById("x2").value
+            punt = new puntos(x,y)
+            re=document.getElementById("recorrido").innerHTML
+            document.getElementById("recorrido").innerHTML=re +"<br>"+ punt.cor
+            Todos.Agregar(punt)
+        }
+        function Distancia(){
+            let a=Todos.inicio
+            let res=0
+                 while(a.sig!=null){
+                res=res+(a.dis())
+                a=a.sig
+                }
+                document.getElementById("distancia").innerHTML=res
+        }  
+    </script>
+    
+</body>
+</html>
